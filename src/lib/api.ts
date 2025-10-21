@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Hardcoded API URL
-const API_BASE_URL = 'http://localhost:4000/api';
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const API_BASE_URL = `${apiUrl}/api`;
 
 const api = axios.create({
   baseURL: API_BASE_URL,

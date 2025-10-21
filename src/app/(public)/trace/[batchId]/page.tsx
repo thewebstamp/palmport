@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface BatchDetails {
   id: number;
   batch_id: string;
@@ -33,7 +35,7 @@ export default function BatchTracePage() {
 
   const fetchBatchDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/batches/${batchId}`);
+      const response = await fetch(`${apiUrl}/api/batches/${batchId}`);
       if (response.ok) {
         const data = await response.json();
         setBatch(data);

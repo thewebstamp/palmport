@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { useAlert } from "@/contexts/AlertContext";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 // Interface for Product
 interface Product {
   id: number;
@@ -41,8 +43,8 @@ export default function ShopSection() {
     const fetchData = async () => {
       try {
         const [productsResponse, shippingResponse] = await Promise.all([
-          fetch('http://localhost:4000/api/products'),
-          fetch('http://localhost:4000/api/shipping/settings')
+          fetch(`${apiUrl}/api/products`),
+          fetch(`${apiUrl}/api/shipping/settings`)
         ]);
 
         if (productsResponse.ok) {

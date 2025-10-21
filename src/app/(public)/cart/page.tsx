@@ -8,6 +8,9 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useAlert } from "@/contexts/AlertContext";
 import OrderHistory from "@/components/OrderHistory";
 
+
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface CartItem {
   id: number;
   name: string;
@@ -56,7 +59,7 @@ export default function CartPage() {
 
   const fetchShippingSettings = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/shipping/settings');
+      const response = await fetch(`${apiUrl}/api/shipping/settings`);
       if (response.ok) {
         const settings = await response.json();
         setShippingSettings(settings);

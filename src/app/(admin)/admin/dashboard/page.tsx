@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import DashboardStats from "@/components/admin/DashboardStats";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface DashboardData {
   totalOrders: number;
   pendingOrders: number;
@@ -20,7 +22,7 @@ export default function AdminDashboard() {
     const fetchDashboardData = async () => {
       try {
         const token = localStorage.getItem('palmport-admin-token');
-        const response = await fetch('http://localhost:4000/api/admin/dashboard', {
+        const response = await fetch(`${apiUrl}/api/admin/dashboard`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }

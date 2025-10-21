@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FiSearch, FiFilter, FiEye, FiEdit, FiRefreshCw, FiMessageCircle } from "react-icons/fi";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface Order {
   id: number;
   order_number: string;
@@ -33,7 +35,7 @@ export default function OrderManager() {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('palmport-admin-token');
-      const response = await fetch('http://localhost:4000/api/orders', {
+      const response = await fetch(`${apiUrl}/api/orders`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -69,7 +71,7 @@ export default function OrderManager() {
       const token = localStorage.getItem('palmport-admin-token');
       console.log('Updating order', orderId, 'to status:', newStatus);
 
-      const response = await fetch(`http://localhost:4000/api/orders/${orderId}/status`, {
+      const response = await fetch(`${apiUrl}/api/orders/${orderId}/status`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,

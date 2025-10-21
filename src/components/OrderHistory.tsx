@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FiPackage, FiTruck, FiCheckCircle, FiClock, FiFilter, FiMessageCircle } from "react-icons/fi";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface OrderItem {
   id: number;
   name: string;
@@ -47,7 +49,7 @@ export default function OrderHistory({ userId }: OrderHistoryProps) {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('palmport-token');
-      const response = await fetch(`http://localhost:4000/api/orders/my-orders`, {
+      const response = await fetch(`${apiUrl}/api/orders/my-orders`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

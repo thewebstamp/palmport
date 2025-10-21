@@ -6,6 +6,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useAlert } from "@/contexts/AlertContext";
 import Image from "next/image";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface CartItem {
   id: number;
   name: string;
@@ -70,7 +72,7 @@ export default function CheckoutPage() {
 
   const fetchShippingSettings = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/shipping/settings');
+      const response = await fetch(`${apiUrl}/api/shipping/settings`);
       if (response.ok) {
         const settings = await response.json();
         setShippingSettings(settings);
@@ -125,7 +127,7 @@ export default function CheckoutPage() {
       };
 
       const token = localStorage.getItem('palmport-token');
-      const orderResponse = await fetch('http://localhost:4000/api/orders', {
+      const orderResponse = await fetch(`${apiUrl}/api/orders`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -143,7 +145,7 @@ export default function CheckoutPage() {
       console.log('Order created successfully:', order);
 
       // Initialize Paystack payment
-      const paystackResponse = await fetch('http://localhost:4000/api/payments/initialize', {
+      const paystackResponse = await fetch(`${apiUrl}/api/payments/initialize`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -229,7 +231,7 @@ export default function CheckoutPage() {
         throw new Error('No authentication token found. Please log in again.');
       }
 
-      const response = await fetch('http://localhost:4000/api/orders/whatsapp-order', {
+      const response = await fetch(`${apiUrl}/api/orders/whatsapp-order`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

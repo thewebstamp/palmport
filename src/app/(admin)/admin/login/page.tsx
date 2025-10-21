@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FiLock, FiMail } from "react-icons/fi";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export default function AdminLogin() {
   const [formData, setFormData] = useState({
     email: '',
@@ -26,7 +28,7 @@ export default function AdminLogin() {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:4000/api/admin/login', {
+      const response = await fetch(`${apiUrl}/api/admin/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

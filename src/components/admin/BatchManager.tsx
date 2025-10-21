@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { FiPlus, FiSearch, FiEdit, FiTrash2, FiDownload, FiRefreshCw } from "react-icons/fi";
 import Image from "next/image";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface Batch {
   id: number;
   batch_id: string;
@@ -65,7 +67,7 @@ export default function BatchManager() {
 
   const fetchBatches = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/batches');
+      const response = await fetch(`${apiUrl}/api/batches`);
       if (response.ok) {
         const data = await response.json();
         setBatches(data);
@@ -79,7 +81,7 @@ export default function BatchManager() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/products');
+      const response = await fetch(`${apiUrl}/api/products`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data);
@@ -112,8 +114,8 @@ export default function BatchManager() {
       };
 
       const url = editingBatch
-        ? `http://localhost:4000/api/batches/${editingBatch.id}`
-        : 'http://localhost:4000/api/batches';
+        ? `${apiUrl}/api/batches/${editingBatch.id}`
+        : `${apiUrl}/api/batches`;
 
       const response = await fetch(url, {
         method: editingBatch ? 'PUT' : 'POST',
@@ -200,7 +202,7 @@ export default function BatchManager() {
     if (confirm('Are you sure you want to delete this batch?')) {
       try {
         const token = localStorage.getItem('palmport-admin-token');
-        const response = await fetch(`http://localhost:4000/api/batches/${batchId}`, {
+        const response = await fetch(`${apiUrl}/api/batches/${batchId}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

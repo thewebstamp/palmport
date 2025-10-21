@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { FiPackage, FiCheckCircle, FiClock, FiTruck, FiShoppingBag, FiFilter } from "react-icons/fi";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface OrderItem {
   id: number;
   name: string;
@@ -48,7 +50,7 @@ export default function OrdersPage() {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('palmport-token');
-      const response = await fetch('http://localhost:4000/api/orders/my-orders', {
+      const response = await fetch(`${apiUrl}/api/orders/my-orders`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { FiPlus, FiSearch, FiEdit, FiTrash2, FiRefreshCw, FiUpload, FiX, FiTruck, FiPackage } from "react-icons/fi";
 import Image from "next/image";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface Product {
   id: number;
   name: string;
@@ -58,7 +60,7 @@ export default function ProductManager() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/products');
+      const response = await fetch(`${apiUrl}/api/products`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data);
@@ -73,7 +75,7 @@ export default function ProductManager() {
   const fetchShippingSettings = async () => {
     try {
       const token = localStorage.getItem('palmport-admin-token');
-      const response = await fetch('http://localhost:4000/api/shipping/admin/settings', {
+      const response = await fetch(`${apiUrl}/api/shipping/admin/settings`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -133,8 +135,8 @@ export default function ProductManager() {
       };
 
       const url = editingProduct
-        ? `http://localhost:4000/api/products/${editingProduct.id}`
-        : 'http://localhost:4000/api/products';
+        ? `${apiUrl}/api/products/${editingProduct.id}`
+        : `${apiUrl}/api/products`;
 
       const response = await fetch(url, {
         method: editingProduct ? 'PUT' : 'POST',
@@ -169,7 +171,7 @@ export default function ProductManager() {
         free_shipping_threshold: parseFloat(shippingFormData.free_shipping_threshold)
       };
 
-      const response = await fetch('http://localhost:4000/api/shipping/settings', {
+      const response = await fetch(`${apiUrl}/api/shipping/settings`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -226,7 +228,7 @@ export default function ProductManager() {
     if (confirm('Are you sure you want to delete this product?')) {
       try {
         const token = localStorage.getItem('palmport-admin-token');
-        const response = await fetch(`http://localhost:4000/api/products/${productId}`, {
+        const response = await fetch(`${apiUrl}/api/products/${productId}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`

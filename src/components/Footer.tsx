@@ -9,6 +9,8 @@ import { RiFacebookCircleFill, RiInstagramFill, RiWhatsappFill, RiPhoneFill, RiM
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -21,7 +23,7 @@ const Footer = () => {
     if (!email) return;
     setStatus("loading");
     try {
-      const res = await fetch("http://localhost:4000/api/subscribe", {
+      const res = await fetch(`${apiUrl}/api/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

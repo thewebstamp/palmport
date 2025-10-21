@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FiSearch, FiMail, FiSend, FiTrash2, FiRefreshCw, FiUsers } from "react-icons/fi";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface Subscriber {
   id: number;
   email: string;
@@ -26,7 +28,7 @@ export default function SubscriberManager() {
   const fetchSubscribers = async () => {
     try {
       const token = localStorage.getItem('palmport-admin-token');
-      const response = await fetch('http://localhost:4000/api/subscribe', {
+      const response = await fetch(`${apiUrl}/api/subscribe`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -47,7 +49,7 @@ export default function SubscriberManager() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('palmport-admin-token');
-      const response = await fetch('http://localhost:4000/api/subscribe/send', {
+      const response = await fetch(`${apiUrl}/api/subscribe/send`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -71,7 +73,7 @@ export default function SubscriberManager() {
   if (confirm('Are you sure you want to remove this subscriber?')) {
     try {
       const token = localStorage.getItem('palmport-admin-token');
-      const response = await fetch(`http://localhost:4000/api/subscribe/${subscriberId}`, {
+      const response = await fetch(`${apiUrl}/api/subscribe/${subscriberId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 interface AuthFormProps {
   mode: 'login' | 'register';
 }
@@ -37,7 +39,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
         ? { email: formData.email, password: formData.password }
         : { name: formData.name, email: formData.email, password: formData.password };
 
-      const response = await fetch(`http://localhost:4000${endpoint}`, {
+      const response = await fetch(`${apiUrl}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
