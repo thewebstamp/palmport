@@ -322,10 +322,10 @@ export default function CartPage() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => {window.scrollTo(0, 0); router.push('/checkout');}}
+              // onClick={() => {window.scrollTo(0, 0); router.push('/checkout');}}
               className="w-full bg-[#d84727] text-white py-3 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              Proceed to Checkout
+              <Link href="/checkout" scroll={true}>Proceed to Checkout</Link>
             </motion.button>
             
             <Link href="/shop">
