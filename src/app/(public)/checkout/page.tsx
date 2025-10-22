@@ -625,7 +625,7 @@ export default function CheckoutPage() {
                       whileTap={{ scale: 0.98 }}
                       onClick={initializePaystackPayment}
                       disabled={loading}
-                      className="hidden w-full bg-[#d84727] text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                      className="hidden w-full bg-[#d84727] text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed items-center justify-center gap-3"
                     >
                       {loading ? (
                         <>
