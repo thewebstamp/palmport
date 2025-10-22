@@ -305,7 +305,8 @@ export default function ShopSection() {
             Choose Your <span className="text-[#d84727]">Pure Goodness</span>
           </h2>
           <p className="text-xl text-[#5c3b28]/70 max-w-2xl mx-auto">
-            Each bottle carries the rich heritage of Nigerian palm oil, carefully sourced and traditionally processed.
+            Each bottle carries the rich heritage of Nigerian palm oil, carefully sourced from trusted farms 
+            and traditionally processed with full traceability from source to shelf.
           </p>
         </motion.div>
 

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import React, {JSX} from "react";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
 import { FiPackage, FiCheckCircle, FiClock, FiTruck, FiShoppingBag, FiFilter } from "react-icons/fi";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -40,12 +41,29 @@ export default function OrdersPage() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'active' | 'completed'>('all');
   const { user } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (user) {
       fetchOrders();
+    } else {
+      // If user is not logged in and loading is complete, redirect to login
+      if (!loading) {
+        router.push('/auth/login');
+      }
     }
-  }, [user]);
+  }, [user, loading, router]);
+
+  useEffect(() => {
+    // timeout to handle cases where auth check takes too long
+    const timer = setTimeout(() => {
+      if (!user && loading) {
+        setLoading(false);
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [user, loading]);
 
   const fetchOrders = async () => {
     try {
@@ -67,6 +85,11 @@ export default function OrdersPage() {
       setLoading(false);
     }
   };
+
+  // If not loading and no user, don't render anything
+  if (!user && !loading) {
+    return null;
+  }
 
   // Group orders by status
   const completedOrders = orders.filter(order => 
