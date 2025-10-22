@@ -341,7 +341,7 @@ export default function CartPage() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full border border-[#5c3b28] text-[#5c3b28] py-3 px-6 rounded-xl font-semibold hover:bg-[#5c3b28] hover:text-white transition-all duration-300"
+                className="mt-2 w-full border border-[#5c3b28] text-[#5c3b28] py-3 px-6 rounded-xl font-semibold hover:bg-[#5c3b28] hover:text-white transition-all duration-300"
               >
                 Continue Shopping
               </motion.button>

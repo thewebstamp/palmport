@@ -612,7 +612,12 @@ export default function CheckoutPage() {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={proceedToPayment}
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      setTimeout(() => {
+                        proceedToPayment();
+                      }, 300);
+                    }}
                     className="w-full bg-[#d84727] text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     Proceed to Payment
