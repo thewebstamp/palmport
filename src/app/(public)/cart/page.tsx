@@ -28,9 +28,9 @@ interface ShippingSettings {
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [shippingSettings, setShippingSettings] = useState<ShippingSettings>({ 
-    shipping_fee: 1000, 
-    free_shipping_threshold: 5000 
+  const [shippingSettings, setShippingSettings] = useState<ShippingSettings>({
+    shipping_fee: 1000,
+    free_shipping_threshold: 5000
   });
   const [isClient, setIsClient] = useState(false);
   const [activeTab, setActiveTab] = useState<'cart' | 'orders'>('cart');
@@ -40,7 +40,7 @@ export default function CartPage() {
 
   useEffect(() => {
     setIsClient(true);
-    
+
     // Only redirect if auth check is complete and no user
     if (!authLoading && !user) {
       router.push('/auth/login?redirect=/cart');
@@ -83,7 +83,7 @@ export default function CartPage() {
 
     setCartItems(updatedCart);
     localStorage.setItem('palmport-cart', JSON.stringify(updatedCart));
-    
+
     if (change > 0) {
       showAlert({
         title: 'Cart Updated',
@@ -99,7 +99,7 @@ export default function CartPage() {
     const updatedCart = cartItems.filter(item => item.id !== id);
     setCartItems(updatedCart);
     localStorage.setItem('palmport-cart', JSON.stringify(updatedCart));
-    
+
     showAlert({
       title: 'Item Removed',
       message: `${item?.name} has been removed from your cart`,
@@ -112,7 +112,7 @@ export default function CartPage() {
     if (cartItems.length > 0) {
       setCartItems([]);
       localStorage.removeItem('palmport-cart');
-      
+
       showAlert({
         title: 'Cart Cleared',
         message: 'All items have been removed from your cart',
@@ -283,7 +283,7 @@ export default function CartPage() {
           className="bg-white rounded-2xl shadow-lg p-6 h-fit border border-[#ffe8d6] sticky top-32"
         >
           <h3 className="text-xl font-bold text-[#5c3b28] mb-4">Order Summary</h3>
-          
+
           <div className="space-y-3 mb-6">
             <div className="flex justify-between text-[#5c3b28]">
               <span>Subtotal</span>
@@ -299,7 +299,7 @@ export default function CartPage() {
                 )}
               </span>
             </div>
-            
+
             {subtotal >= shippingSettings.free_shipping_threshold ? (
               <div className="text-green-600 text-sm bg-green-50 p-2 rounded-lg text-center">
                 🎉 You qualify for free shipping!
@@ -309,7 +309,7 @@ export default function CartPage() {
                 Add ₦{(shippingSettings.free_shipping_threshold - subtotal).toLocaleString()} more for free shipping
               </div>
             )}
-            
+
             <div className="border-t border-[#ffe8d6] pt-3">
               <div className="flex justify-between text-lg font-bold text-[#5c3b28]">
                 <span>Total</span>
@@ -319,19 +319,24 @@ export default function CartPage() {
           </div>
 
           <div className="space-y-3">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full bg-[#d84727] text-white py-3 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            <Link
+              href="/checkout"
+              scroll={true}
+              onClick={() => {
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+              }}
             >
-              <Link 
-              href="/checkout" scroll={true}
-              onClick={() => {setTimeout(() => {window.scrollTo(0, 0)}, 100)}}
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-[#d84727] text-white py-3 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
-              Proceed to Checkout
-              </Link>
-            </motion.button>
-            
+                Proceed to Checkout
+              </motion.button>
+            </Link>
+
             <Link href="/shop">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -429,7 +434,7 @@ export default function CartPage() {
                 {activeTab === 'cart' ? 'Review your selected items' : 'Track your purchases and order status'}
               </p>
             </div>
-            
+
             {/* User Info and Logout - Always show when user is logged in */}
             {user && (
               <div className="flex items-center gap-4 bg-white/80 backdrop-blur-sm rounded-xl p-3 border border-[#ffe8d6]">
@@ -453,21 +458,19 @@ export default function CartPage() {
           <div className="flex border-b border-[#ffe8d6] mb-8">
             <button
               onClick={() => setActiveTab('cart')}
-              className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
-                activeTab === 'cart'
+              className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'cart'
                   ? 'border-[#d84727] text-[#d84727]'
                   : 'border-transparent text-[#5c3b28]/70 hover:text-[#5c3b28]'
-              }`}
+                }`}
             >
               Shopping Cart ({cartItems.length})
             </button>
             <button
               onClick={() => setActiveTab('orders')}
-              className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
-                activeTab === 'orders'
+              className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'orders'
                   ? 'border-[#d84727] text-[#d84727]'
                   : 'border-transparent text-[#5c3b28]/70 hover:text-[#5c3b28]'
-              }`}
+                }`}
             >
               Order History
             </button>
