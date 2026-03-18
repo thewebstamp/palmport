@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 🎨 Frontend Service
 
-## Getting Started
+This repository contains the frontend application built with Next.js.
 
-First, run the development server:
+It communicates with the backend API for product data, inventory, and order processing.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# 🌴 Palm Port - Palm Oil Store
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A full-stack e-commerce platform built for a real palm oil business, enabling online sales, inventory management, and business insights.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Overview
 
-## Learn More
+Palm Port is a **production-ready web application** developed for a real client to digitize their palm oil business operations.
 
-To learn more about Next.js, take a look at the following resources:
+The platform provides a seamless shopping experience for customers and a powerful admin system for managing products, inventory, and sales.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💼 Project Type
 
-## Deploy on Vercel
+- ✅ Real client project  
+- ✅ Full-stack application (Frontend + Backend)  
+- ✅ Business-focused solution  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💡 Problem
+
+Traditional palm oil sellers often face:
+
+- Limited or no online presence  
+- Poor inventory tracking  
+- Difficulty managing orders and customers  
+- Lack of sales insights  
+
+---
+
+## ✅ Solution
+
+Palm Port delivers:
+
+- A branded e-commerce storefront  
+- Admin panel for product and inventory management  
+- Sales tracking and business insights  
+- Scalable backend API for operations  
+
+---
+
+## ✨ Key Features
+
+### 🛍️ Customer Features
+- Product browsing and purchasing  
+- Responsive and user-friendly interface  
+
+### 🛠️ Admin Features
+- Product management (CRUD)  
+- Inventory tracking  
+- Sales monitoring and insights  
+
+---
+
+## 🏗️ Architecture
+
+This project is split into two repositories:
+
+- 🎨 **Frontend (Next.js application)**  
+- ⚙️ **Backend (Express.js API)**  
+
+> Add links to both repositories here
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- Next.js  
+- TypeScript  
+- Tailwind CSS  
+- Vercel  
+
+### Backend
+- Node.js  
+- Express.js  
+- REST API  
+- Inventory management logic  
+
+---
+
+## 🌍 Live Demo
+
+> https://palmport.vercel.app
+
+---
+
+## 🧠 What This Project Demonstrates
+
+- Full-stack system design  
+- API development with Express.js  
+- E-commerce architecture  
+- Real-world client problem solving  
+- Separation of concerns (frontend & backend)  
+
+---
+
+## 👨‍💻 My Role
+
+- Full-stack development  
+- Backend API design and implementation  
+- Frontend UI development  
+- Deployment and optimization  
+
+---
+
+## 🔒 Note
+
+Some features or data may be modified or excluded for client privacy.
+
+---
+
+## 📄 License
+
+This project is for portfolio purposes.
